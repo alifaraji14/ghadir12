@@ -1,0 +1,60 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x", "rhel-openssl-3.0.x"]
+}
+
+model Session {
+  id              String      @id
+  name            String      // e.g. "سانس ۱"
+  timeRange       String      // e.g. "16:30 - 17:30"
+  capacity        Int         // capacity
+  isClosed        Boolean     @default(false)
+  registrations   Registration[]
+  companions      Companion[]
+}
+
+model Registration {
+  id                String      @id // Format: GHADIR-2026-XXXXXX
+  mainGuestName     String
+  mainGuestMobile   String      @unique
+  mainGuestAge      Int         @default(20)
+  attendanceStatus  String      // "yes", "maybe", "no"
+  sessionId         String
+  session           Session     @relation(fields: [sessionId], references: [id])
+  notes             String?
+  createdAt         DateTime    @default(now())
+  companions        Companion[]
+}
+
+model Companion {
+  id                Int         @id @default(autoincrement())
+  registrationId    String
+  registration      Registration @relation(fields: [registrationId], references: [id], onDelete: Cascade)
+  fullName          String
+  mobileNumber      String?
+  age               Int         @default(20)
+  attendanceStatus  String      // "yes", "maybe", "no"
+  sessionId         String
+  session           Session     @relation(fields: [sessionId], references: [id])
+}
+
+model EventSetting {
+  id                 String      @id @default("default")
+  eventTitle         String
+  programInfo        String
+  escapeBoxName      String
+  solarDate          String
+  hijriDate          String
+  eventTime          String
+  address            String
+  coordinates        String
+  registrationStatus String      // "open" or "closed"
+  successMessage     String
+  errorMessage       String
+  maxGuests          Int         // maximum total guests per registration (default 5)
+}

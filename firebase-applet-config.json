@@ -1,0 +1,10 @@
+{
+  "projectId": "ambient-scion-cr5vm",
+  "appId": "1:404908707081:web:a3bc042f0c97b944bf17d8",
+  "apiKey": "USE_ENV_VARIABLE",
+  "authDomain": "ambient-scion-cr5vm.firebaseapp.com",
+  "firestoreDatabaseId": "ai-studio-bece9c37-45e4-4107-96d7-81219bebd407",
+  "storageBucket": "ambient-scion-cr5vm.firebasestorage.app",
+  "messagingSenderId": "404908707081",
+  "measurementId": ""
+}

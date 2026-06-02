@@ -1,0 +1,6 @@
+{
+  "name": "Ghadir RSVP Platform",
+  "description": "سامانه ثبت‌نام و مدیریت ظرفیت دیجیتال برای جشن عید سعید غدیر خم به همراه پنل مدیریت و هماهنگی خودکار",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
